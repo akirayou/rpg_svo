@@ -47,9 +47,7 @@ void FrameHandlerMono::initialize()
   DepthFilter::callback_t depth_filter_cb = boost::bind(
       &MapPointCandidates::newCandidatePoint, &map_.point_candidates_, _1, _2);
   depth_filter_ = new DepthFilter(feature_detector, depth_filter_cb);
-  assert(depth_filter_);
   depth_filter_->startThread();
-  SVO_INFO_STREAM("framehandler mono  init");
 }
 
 FrameHandlerMono::~FrameHandlerMono()
@@ -59,7 +57,6 @@ FrameHandlerMono::~FrameHandlerMono()
 
 void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
 {
-  if(this->lastFrame() )SVO_INFO_STREAM("have frame");
   if(!startFrameProcessingCommon(timestamp))
     return;
 
@@ -89,7 +86,6 @@ void FrameHandlerMono::addImage(const cv::Mat& img, const double timestamp)
   new_frame_.reset();
   // finish processing
   finishFrameProcessingCommon(last_frame_->id_, res, last_frame_->nObs());
-  if(this->lastFrame())SVO_INFO_STREAM("have frame");
 }
 
 FrameHandlerMono::UpdateResult FrameHandlerMono::processFirstFrame()

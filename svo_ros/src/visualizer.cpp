@@ -93,7 +93,7 @@ void Visualizer::publishMinimal(
 
   if(frame == NULL)
   {
-    //if(pub_images_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_PAUSED)
+    if(pub_images_.getNumSubscribers() > 0 && slam.stage() == FrameHandlerBase::STAGE_PAUSED)
     {
       // Display image when slam is not running.
       cv_bridge::CvImage img_msg;

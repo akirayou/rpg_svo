@@ -103,9 +103,7 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
     ROS_ERROR("cv_bridge exception: %s", e.what());
   }
   processUserActions();
-  if(!vo_-> lastFrame())SVO_INFO_STREAM("no frame yet");
   vo_->addImage(img, msg->header.stamp.toSec());
-  if(!vo_-> lastFrame())SVO_INFO_STREAM("no frame yet");
   visualizer_.publishMinimal(img, vo_->lastFrame(), *vo_, msg->header.stamp.toSec());
 
   if(publish_markers_ && vo_->stage() != FrameHandlerBase::STAGE_PAUSED)
