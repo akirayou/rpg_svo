@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 #include <ros/package.h>
 #include <string>
 #include <svo/frame_handler_mono.h>
@@ -104,7 +103,9 @@ void VoNode::imgCb(const sensor_msgs::ImageConstPtr& msg)
     ROS_ERROR("cv_bridge exception: %s", e.what());
   }
   processUserActions();
+  if(!vo_-> lastFrame())SVO_INFO_STREAM("no frame yet");
   vo_->addImage(img, msg->header.stamp.toSec());
+  if(!vo_-> lastFrame())SVO_INFO_STREAM("no frame yet");
   visualizer_.publishMinimal(img, vo_->lastFrame(), *vo_, msg->header.stamp.toSec());
 
   if(publish_markers_ && vo_->stage() != FrameHandlerBase::STAGE_PAUSED)
