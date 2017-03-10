@@ -35,7 +35,7 @@ The API is documented here: http://uzh-rpg.github.io/rpg_svo/doc/
 
 #### Instructions
 
-See the Wiki for more instructions. https://github.com/uzh-rpg/rpg_svo/wiki
+See the Wiki for more instructions. https://github.com/akirayou/rpg_svo/wiki
 
 #### Contributing
 
